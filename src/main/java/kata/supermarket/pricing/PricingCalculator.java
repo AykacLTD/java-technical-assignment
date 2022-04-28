@@ -2,21 +2,25 @@ package kata.supermarket.pricing;
 
 import kata.supermarket.item.Item;
 import kata.supermarket.pricing.discount.DiscountStrategy;
-import kata.supermarket.pricing.discount.impl.DiscountStrategyNoDiscount;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PricingCalculator {
-    private final DiscountStrategy discount;
+    private List<DiscountStrategy> discounts;
 
     public PricingCalculator() {
-        this.discount = new DiscountStrategyNoDiscount();
+        this.discounts = new ArrayList<>();
+    }
+    public PricingCalculator(DiscountStrategy discount) {
+        this.discounts = new ArrayList<>();
+        this.discounts.add(discount);
     }
 
-    public PricingCalculator(DiscountStrategy discount) {
-        this.discount = discount;
+    public void addDiscountStrategy(DiscountStrategy discount) {
+        this.discounts.add(discount);
     }
 
     private BigDecimal subtotal(List<Item> items) {
@@ -35,8 +39,10 @@ public class PricingCalculator {
      */
     private BigDecimal discounts(List<Item> items) {
         BigDecimal totalDiscount = BigDecimal.ZERO;
-        totalDiscount = totalDiscount.add(discount.applyDiscount(items))
-                .setScale(2, RoundingMode.HALF_UP);
+        for (DiscountStrategy discountStrategy : discounts) {
+            totalDiscount = totalDiscount.add(discountStrategy.applyDiscount(items))
+                    .setScale(2, RoundingMode.HALF_UP);
+        }
         return totalDiscount;
     }
 
