@@ -29,8 +29,6 @@ class DiscountTest {
     public static final List<Item> MIXEDITEMS_LIST = Arrays.asList(ITEM_APPLE, ITEM_RICE, ITEM_SUGAR, ITEM_CAN_SODA, ITEM_CAN_SODA, ITEM_CAN_SODA, ITEM_BOTTLE_MILK, ITEM_BOTTLE_MILK, ITEM_BOTTLE_MILK, ITEM_BOTTLE_MILK, ITEM_PACK_DIGESTIVES, ITEM_PACK_DIGESTIVES, ITEM_PACK_DIGESTIVES, ITEM_PACK_DIGESTIVES);
     public static final List<Item> ITEMSBYUNIT_LIST = Arrays.asList(ITEM_CAN_SODA, ITEM_BOTTLE_MILK, ITEM_CAN_SODA);
     public static final List<Item> ITEMSBYWEIGHT_LIST = Arrays.asList(ITEM_APPLE, ITEM_RICE, ITEM_SUGAR);
-    private final DiscountStrategyBuyOneGetOneFree discountStrategyBuyOneGetOneFree = new DiscountStrategyBuyOneGetOneFree();
-    private final DiscountStrategyBuyOneKiloForHalfPrice discountStrategyBuyOneKiloForHalfPrice = new DiscountStrategyBuyOneKiloForHalfPrice();
 
     @DisplayName("No discount  discount strategy tests")
     @MethodSource("prepareDataForNoDiscountTest")
